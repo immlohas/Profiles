@@ -1,13 +1,3 @@
-/*
-[Script]
-flushDNS = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/asset/flushDNS.js
-// use "title" or "icon" or "color" or "server" in "argument":
-// flushDNS = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/asset/flushDNS.js,argument=title=DNS FLush&icon=arrow.clockwise&color=#3d3d5b&server=false
-
-[Panel]
-flushDNS = script-name=flushDNS,update-interval=600
-*/
-
 !(async () => {
     let panel = { title: "Flush DNS" },
         showServer = true,
@@ -24,8 +14,8 @@ flushDNS = script-name=flushDNS,update-interval=600
         dnsCache = [...new Set(dnsCache.map((d) => d.server))].toString().replace(/,/g, "\n");
     }
     if ($trigger == "button") await httpAPI("/v1/dns/flush");
-    let delay = ((await httpAPI("/v1/test/dns_delay")).delay * 1000).toFixed(0);
-    panel.content = `delay: ${delay}ms${dnsCache ? `\nserver:\n${dnsCache}` : ""}`;
+    let Delay = ((await httpAPI("/v1/test/dns_Delay")).Delay * 1000).toFixed(0);
+    panel.content = `Delay: ${Delay}ms${dnsCache ? `\nserver:\n${dnsCache}` : ""}`;
     $done(panel);
 })();
 
